@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-choco.exe upgrade firefox --params "/NoTaskbarShortcut /NoDesktopShortcut /RemoveDistributionDir" -y
+if choco.exe list -lo | grep -q 'Firefox'; then
+  echo "Firefox already installed - upgrade via Firefox instead of choco"
+else
+  choco.exe install firefox --params "/NoTaskbarShortcut /NoDesktopShortcut /RemoveDistributionDir" -y
+fi
